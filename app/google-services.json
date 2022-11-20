@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "454520473507",
+    "project_id": "shopzadax",
+    "storage_bucket": "shopzadax.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454520473507:android:4427c986d3012fdc0b7c16",
+        "android_client_info": {
+          "package_name": "com.utcc.shopzada"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454520473507-tmcnea8df461gt82qis47rqn6b1899k6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.utcc.shopzada",
+            "certificate_hash": "a97a6c9c2839445d965263121afc610e5c2cd30a"
+          }
+        },
+        {
+          "client_id": "454520473507-ognuk9iek2kd1gsisk33k14iqe9q2t96.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOAV2IYvPYqu2v3CsiTO2pBh5V_h0KX9Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454520473507-ognuk9iek2kd1gsisk33k14iqe9q2t96.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
