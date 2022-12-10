@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".LandingActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:contentDescription="@string/image"
+                android:src="@drawable/ic_shopzada"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingHorizontal="50dp">
+
+                <Button
+                    android:id="@+id/loginButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:text="@string/login"
+                    android:background="@drawable/main_button"
+                    android:fontFamily="@font/kanit_bold"
+                    android:letterSpacing="0.05"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="10dp"
+                    android:elevation="4dp"/>
+
+                <Button
+                    android:id="@+id/registerButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:text="@string/register"
+                    android:background="@drawable/sub_button"
+                    android:fontFamily="@font/kanit_bold"
+                    android:letterSpacing="0.05"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:elevation="4dp"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

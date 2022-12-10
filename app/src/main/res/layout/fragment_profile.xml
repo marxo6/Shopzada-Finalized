@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProfileFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/cartIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_basket"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/cartNotify"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:src="@drawable/ic_notify_badge"
+                app:layout_constraintEnd_toEndOf="@id/cartIcon"
+                app:layout_constraintTop_toTopOf="@id/cartIcon"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/profileHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kanit_bold"
+                android:text="@string/myprofile"
+                android:letterSpacing="0.05"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/settingsIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_settings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp">
+
+            <me.tankery.lib.circularseekbar.CircularSeekBar
+                android:id="@+id/circularSeekBar"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                app:cs_circle_color="#00E9E9E9"
+                app:cs_circle_progress_color="#FFEA384D"
+                app:cs_circle_stroke_width="5dp"
+                app:cs_circle_style="round"
+                app:cs_disable_pointer="true"
+                app:cs_end_angle="90"
+                app:cs_progress="33"
+                app:cs_start_angle="90"
+                app:layout_constraintBottom_toBottomOf="@+id/userImage"
+                app:layout_constraintEnd_toEndOf="@+id/userImage"
+                app:layout_constraintStart_toStartOf="@+id/userImage"
+                app:layout_constraintTop_toTopOf="@+id/userImage" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userImage"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:elevation="4dp"
+                android:src="@drawable/ic_userprofile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="20dp"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/userIdLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/circularSeekBar"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/userId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit_bold"
+                    android:gravity="center"
+                    android:letterSpacing="0.03"
+                    android:text="@string/undefined"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/verifiedSymbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_verified"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/userId"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="5dp"
+                    android:visibility="gone"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/userLevel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/level"
+                android:gravity="center"
+                android:fontFamily="@font/kanit_medium"
+                android:letterSpacing="0.03"
+                app:layout_constraintTop_toBottomOf="@id/userIdLayout" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/userLevel"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:padding="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:id="@+id/followingCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/zero"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:fontFamily="@font/kanit_bold"
+                        android:textColor="@color/black"
+                        android:letterSpacing="0.03"/>
+
+                    <TextView
+                        android:id="@+id/followingLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/following"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/followingCount"
+                        android:fontFamily="@font/kanit_medium"
+                        android:letterSpacing="0.03"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toEndOf="@id/constraintLayout"
+                    app:layout_constraintEnd_toStartOf="@id/constraintLayout3">
+
+                    <TextView
+                        android:id="@+id/likesCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/zero"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:fontFamily="@font/kanit_bold"
+                        android:textColor="@color/black"
+                        android:letterSpacing="0.03"/>
+
+                    <TextView
+                        android:id="@+id/likesLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/likes"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/likesCount"
+                        android:fontFamily="@font/kanit_medium"
+                        android:letterSpacing="0.03"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toEndOf="@id/constraintLayout2"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <TextView
+                        android:id="@+id/expCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kanit_bold"
+                        android:gravity="center"
+                        android:letterSpacing="0.03"
+                        android:text="@string/experience"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toStartOf="@+id/expDivide"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/expDivide"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kanit_bold"
+                        android:gravity="center"
+                        android:letterSpacing="0.03"
+                        android:text="/"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toStartOf="@id/expTotal"
+                        app:layout_constraintStart_toEndOf="@id/expCount" />
+
+                    <TextView
+                        android:id="@+id/expTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kanit_bold"
+                        android:gravity="center"
+                        android:letterSpacing="0.03"
+                        android:text="2000"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/expDivide"
+                        tools:layout_editor_absoluteY="0dp" />
+
+                    <TextView
+                        android:id="@+id/expLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/levelpoint"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/expCount"
+                        android:fontFamily="@font/kanit_medium"
+                        android:letterSpacing="0.03"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:elevation="4dp"
+                    android:background="@drawable/sub_button"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp">
+
+                    <ImageView
+                        android:id="@+id/coinsIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_coins"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/kanit_medium"
+                        android:text="@string/szcredits"
+                        android:letterSpacing="0.03"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/coinsIcon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kanit_bold"
+                        android:text="@string/zerodecimal"
+                        android:letterSpacing="0.03"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/textView3"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginRight="10dp"/>
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kanit_medium"
+                        android:text="@string/points"
+                        android:letterSpacing="0.03"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/myAccountPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:elevation="4dp"
+                    android:background="@drawable/sub_button"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp">
+
+                    <ImageView
+                        android:id="@+id/accountIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_account"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/accountNotify"
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:src="@drawable/ic_notify_badge"
+                        app:layout_constraintEnd_toEndOf="@id/accountIcon"
+                        app:layout_constraintTop_toTopOf="@id/accountIcon"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/myaccount"
+                        android:letterSpacing="0.03"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/accountIcon"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/kanit_medium"
+                        android:textColor="@color/black"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_right_arrow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/myCouponsPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:elevation="4dp"
+                    android:background="@drawable/sub_button"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp">
+
+                    <ImageView
+                        android:id="@+id/couponIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_coupon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/couponNotify"
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:src="@drawable/ic_notify_badge"
+                        app:layout_constraintEnd_toEndOf="@id/couponIcon"
+                        app:layout_constraintTop_toTopOf="@id/couponIcon"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mycoupons"
+                        android:letterSpacing="0.03"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/couponIcon"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/kanit_medium"
+                        android:textColor="@color/black"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_right_arrow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:elevation="4dp"
+                    android:background="@drawable/sub_button"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp">
+
+                    <ImageView
+                        android:id="@+id/orderIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_order"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/orderNotify"
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:src="@drawable/ic_notify_badge"
+                        app:layout_constraintEnd_toEndOf="@id/orderIcon"
+                        app:layout_constraintTop_toTopOf="@id/orderIcon"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/myorders"
+                        android:letterSpacing="0.03"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/orderIcon"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/kanit_medium"
+                        android:textColor="@color/black"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_right_arrow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/luckyWheelPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:elevation="4dp"
+                    android:background="@drawable/sub_button"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:id="@+id/luckyIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_clover"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/luckyNotify"
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:src="@drawable/ic_notify_badge"
+                        app:layout_constraintEnd_toEndOf="@id/luckyIcon"
+                        app:layout_constraintTop_toTopOf="@id/luckyIcon"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/luckywheel"
+                        android:letterSpacing="0.03"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/luckyIcon"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/kanit_medium"
+                        android:textColor="@color/black"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_right_arrow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>
