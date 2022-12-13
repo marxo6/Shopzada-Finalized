@@ -9,26 +9,33 @@
         <entry key="app/src/main/res/drawable/facebook_button.xml" value="0.1065" />
         <entry key="app/src/main/res/drawable/google_button.xml" value="0.1065" />
         <entry key="app/src/main/res/drawable/gradient_background.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_add_white.xml" value="0.1055" />
         <entry key="app/src/main/res/drawable/ic_background.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/ic_bg.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/ic_check_white.xml" value="0.1065" />
+        <entry key="app/src/main/res/drawable/ic_chip_white.xml" value="0.1055" />
         <entry key="app/src/main/res/drawable/ic_coupon.xml" value="0.148" />
         <entry key="app/src/main/res/drawable/ic_facebook_logo_2019.xml" value="0.1065" />
+        <entry key="app/src/main/res/drawable/ic_follow_white.xml" value="0.1215" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_icons8_home.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_image.xml" value="0.1625" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/ic_left_arrow_white.xml" value="0.1065" />
         <entry key="app/src/main/res/drawable/ic_logout.xml" value="0.152" />
         <entry key="app/src/main/res/drawable/ic_notify_badge.xml" value="0.1065" />
         <entry key="app/src/main/res/drawable/ic_order.xml" value="0.148" />
+        <entry key="app/src/main/res/drawable/ic_payment_white.xml" value="0.1055" />
         <entry key="app/src/main/res/drawable/ic_pointer.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_setting.xml" value="0.148" />
         <entry key="app/src/main/res/drawable/ic_shopzada.xml" value="0.127" />
         <entry key="app/src/main/res/drawable/ic_test.xml" value="0.127" />
+        <entry key="app/src/main/res/drawable/ic_trash_white.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/ic_userprofile.xml" value="0.148" />
         <entry key="app/src/main/res/drawable/ic_verified.xml" value="0.148" />
+        <entry key="app/src/main/res/drawable/ic_video_tint.xml" value="0.153" />
         <entry key="app/src/main/res/drawable/main_button.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/radius_white_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/sub_button.xml" value="0.1" />
@@ -41,14 +48,38 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.3038869222005208" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.1356437793676404" />
+        <entry key="app/src/main/res/layout/beep_view_layout.xml" value="0.33785450061652283" />
+        <entry key="app/src/main/res/layout/cart_view_layout.xml" value="0.2806873543914658" />
+        <entry key="app/src/main/res/layout/chatview_layout.xml" value="0.2383010864257813" />
+        <entry key="app/src/main/res/layout/fragment_add_product.xml" value="0.17304295514685664" />
+        <entry key="app/src/main/res/layout/fragment_admin_management.xml" value="0.3158367833347186" />
+        <entry key="app/src/main/res/layout/fragment_approvement.xml" value="0.1474953029466712" />
         <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/fragment_following.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/fragment_lucky_wheel.xml" value="0.2828765869140625" />
-        <entry key="app/src/main/res/layout/fragment_my_account.xml" value="0.27745557425012546" />
-        <entry key="app/src/main/res/layout/fragment_my_cart.xml" value="0.20960388183593753" />
+        <entry key="app/src/main/res/layout/fragment_checkout.xml" value="0.19196319580078125" />
+        <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.11389417582645422" />
+        <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.17845427601049973" />
+        <entry key="app/src/main/res/layout/fragment_following.xml" value="0.2120571812839373" />
+        <entry key="app/src/main/res/layout/fragment_lucky_wheel.xml" value="0.22886352539062493" />
+        <entry key="app/src/main/res/layout/fragment_manage_product.xml" value="0.14387031408308004" />
+        <entry key="app/src/main/res/layout/fragment_my_account.xml" value="0.2546539306640625" />
+        <entry key="app/src/main/res/layout/fragment_my_cart.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_my_coupons.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.28830718994140625" />
+        <entry key="app/src/main/res/layout/fragment_my_order.xml" value="0.184375" />
+        <entry key="app/src/main/res/layout/fragment_my_store.xml" value="0.2029783680545061" />
+        <entry key="app/src/main/res/layout/fragment_product.xml" value="0.13335113525390624" />
+        <entry key="app/src/main/res/layout/fragment_product_management.xml" value="0.3268898341966712" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.2529187643353663" />
+        <entry key="app/src/main/res/layout/fragment_upload_beep.xml" value="0.42065491183879095" />
+        <entry key="app/src/main/res/layout/fragment_view_product.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/moderator_manage_view_layout.xml" value="0.33963775634765625" />
+        <entry key="app/src/main/res/layout/orderview_layout.xml" value="0.22105781191871277" />
+        <entry key="app/src/main/res/layout/product_view_layout.xml" value="0.1960444430427072" />
+        <entry key="app/src/main/res/layout/receipt_item_layout.xml" value="0.2751235584843493" />
+        <entry key="app/src/main/res/layout/store_products_view_layout.xml" value="0.37263641357421873" />
+        <entry key="app/src/main/res/layout/unverified_view_layout.xml" value="0.2595572000021462" />
+        <entry key="app/src/main/res/layout/update_product_view_layout.xml" value="0.49433962264150944" />
+        <entry key="app/src/main/res/layout/userview_layout.xml" value="0.18783416748046877" />
         <entry key="app/src/main/res/menu/bottom_navigator.xml" value="0.24256896972656256" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1745" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1745" />
@@ -60,5 +91,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.16936035156249998" />
+      </ProjectState>
+    </option>
   </component>
 </project>

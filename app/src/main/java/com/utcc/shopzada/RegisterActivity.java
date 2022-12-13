@@ -7,9 +7,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,29 +19,30 @@ import android.widget.Toast;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.utcc.shopzada.Models.UserModel;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    FirebaseAuth auth;
     EditText usernameInp, emailInp, passwordInp, conPasswordInp;
     CheckBox agreement;
+    FirebaseDatabase database;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        database = FirebaseDatabase.getInstance("https://shopzadaproject-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        reference = database.getReference("Users");
 
         if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
             setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
@@ -55,8 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
             setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
-
-        auth = FirebaseAuth.getInstance();
 
         ConstraintLayout backbutton = (ConstraintLayout) findViewById(R.id.backButton);
         ConstraintLayout loginPage = (ConstraintLayout) findViewById(R.id.loginPage);
@@ -127,49 +126,31 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void validateUser(String username, String email, String password) {
-        final DatabaseReference reference;
-        reference = FirebaseDatabase.getInstance().getReference();
-
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (!(snapshot.child("Users").child(username).exists())) {
-                    HashMap<String, Object> userDataMap = new HashMap<>();
-                    userDataMap.put("username", username);
-                    userDataMap.put("email", email);
-                    userDataMap.put("emailVerified", "0");
-                    userDataMap.put("password", password);
-                    userDataMap.put("phone", "-");
-                    userDataMap.put("phoneVerified", "0");
-                    userDataMap.put("verified", "0");
-                    userDataMap.put("credits", "0.00");
-                    userDataMap.put("level", "1");
-                    userDataMap.put("levelpoints", "0");
-                    userDataMap.put("luckypoints", "0");
+                UserModel userModel = new UserModel(username, email, password, "", "", "customer", "", 0, 1, 0, 0, false, false, false);
+                Map<String, Object> userValues = userModel.toMap();
 
-                    reference.child("Users").child(username).updateChildren(userDataMap)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this, "Successfully registered!", Toast.LENGTH_SHORT).show();
+                reference.child(username).updateChildren(userValues).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(RegisterActivity.this, "Successfully registered!", Toast.LENGTH_SHORT).show();
 
-                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                                Animatoo.INSTANCE.animateSlideLeft(RegisterActivity.this);
-                                finish();
-                            } else {
-                                Toast.makeText(RegisterActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
+                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                            Animatoo.INSTANCE.animateSlideLeft(RegisterActivity.this);
+                            finish();
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    });
-                } else {
-                    Toast.makeText(RegisterActivity.this, "Username is already exists!", Toast.LENGTH_SHORT).show();
-                }
+                    }
+                });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(RegisterActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
     }

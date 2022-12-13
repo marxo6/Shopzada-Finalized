@@ -1,13 +1,19 @@
 package com.utcc.shopzada;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+
+import io.paperdb.Paper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,10 +68,24 @@ public class SettingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
         ImageView backPress = (ImageView) view.findViewById(R.id.backButton);
+        ConstraintLayout logoutButton = (ConstraintLayout) view.findViewById(R.id.logoutPage);
+        MainActivity mainActivity = (MainActivity) getActivity();
+
         backPress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity) getActivity()).onBackPressed();
+                mainActivity.onBackPressed();
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Paper.book().destroy();
+
+                startActivity(new Intent(mainActivity, LoginActivity.class));
+                Animatoo.INSTANCE.animateSlideLeft(mainActivity);
+                mainActivity.finish();
             }
         });
 

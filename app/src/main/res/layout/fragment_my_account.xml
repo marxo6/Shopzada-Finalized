@@ -41,6 +41,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/uploadButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_check"
@@ -77,6 +78,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/userImage"
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:src="@drawable/ic_userprofile"
@@ -106,6 +108,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
+                        android:id="@+id/usernameInput"
                         android:layout_width="0dp"
                         android:layout_height="44dp"
                         android:layout_margin="10dp"
@@ -144,6 +147,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
+                        android:id="@+id/nameInput"
                         android:layout_width="0dp"
                         android:layout_height="44dp"
                         android:layout_margin="10dp"
@@ -182,6 +186,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
+                        android:id="@+id/emailInput"
                         android:layout_width="0dp"
                         android:layout_height="44dp"
                         android:layout_margin="10dp"
@@ -220,6 +225,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
+                        android:id="@+id/passwordInput"
                         android:layout_width="0dp"
                         android:layout_height="44dp"
                         android:layout_margin="10dp"
@@ -258,6 +264,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
+                        android:id="@+id/conPasswordInput"
                         android:layout_width="0dp"
                         android:layout_height="44dp"
                         android:layout_margin="10dp"
@@ -274,6 +281,45 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/conPasswordLabel"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:id="@+id/addressLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address"
+                        android:letterSpacing="0.03"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/kanit_medium"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/addressInput"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_margin="10dp"
+                        android:elevation="4dp"
+                        android:hint="Address"
+                        android:textSize="12dp"
+                        android:maxLines="1"
+                        android:inputType="textPassword"
+                        android:paddingLeft="10dp"
+                        android:letterSpacing="0.03"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/kanit_medium"
+                        android:background="@drawable/sub_button"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/addressLabel"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

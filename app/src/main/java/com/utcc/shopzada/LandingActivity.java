@@ -1,15 +1,28 @@
 package com.utcc.shopzada;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.utcc.shopzada.Models.UserModel;
+import com.utcc.shopzada.Prevalent.Prevalent;
+
+import io.paperdb.Paper;
 
 public class LandingActivity extends AppCompatActivity {
 
@@ -41,5 +54,6 @@ public class LandingActivity extends AppCompatActivity {
                 Animatoo.INSTANCE.animateSlideLeft(LandingActivity.this);
             }
         });
+
     }
 }

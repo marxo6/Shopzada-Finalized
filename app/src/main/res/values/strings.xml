@@ -37,4 +37,20 @@
     <string name="logout">Log out</string>
     <string name="accounted">Already have an account?</string>
     <string name="unaccounted">Don\'t have an account?</string>
+    <string name="search">Search</string>
+    <string name="mystore">My Store</string>
+    <string name="adminmanagement">Admin Management</string>
+    <string name="addaproduct">Add a product</string>
+    <string name="manageaproduct">Manage a product</string>
+    <string name="viewaproduct">View a product</string>
+    <string name="luckypointsremain">Lucky Points : 0</string>
+    <string name="productapprovement">Product Approvement</string>
+    <string name="productmanagement">Product Management</string>
+    <string name="addtocart">Add to cart</string>
+    <string name="buynow">Buy now</string>
+    <string name="uploadabeep">Upload a Beep</string>
+    <string name="followers">Followers</string>
+    <string name="checkout">Checkout</string>
+    <string name="deliveryaddress">Delivery Address</string>
+    <string name="discountcode">Discount Code</string>
 </resources>

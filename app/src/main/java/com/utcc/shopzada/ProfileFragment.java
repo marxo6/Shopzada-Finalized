@@ -2,15 +2,30 @@ package com.utcc.shopzada;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+import com.utcc.shopzada.Prevalent.Prevalent;
+
+import java.text.DecimalFormat;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +42,7 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private FirebaseDatabase database;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -69,8 +85,66 @@ public class ProfileFragment extends Fragment {
         ConstraintLayout luckyWheel = (ConstraintLayout) view.findViewById(R.id.luckyWheelPage);
         ConstraintLayout coupons = (ConstraintLayout) view.findViewById(R.id.myCouponsPage);
         ConstraintLayout account = (ConstraintLayout) view.findViewById(R.id.myAccountPage);
+        ConstraintLayout store = (ConstraintLayout) view.findViewById(R.id.myStorePage);
+        ConstraintLayout admin = (ConstraintLayout) view.findViewById(R.id.adminPage);
+        ConstraintLayout orderPage = (ConstraintLayout) view.findViewById(R.id.orderPage);
         ImageView cartButton = (ImageView) view.findViewById(R.id.cartIcon);
         ImageView settingsButton = (ImageView) view.findViewById(R.id.settingsIcon);
+        ImageView cartNotify = (ImageView) view.findViewById(R.id.cartNotify);
+        TextView userIdLabel = (TextView) view.findViewById(R.id.userId);
+        TextView userLevelLabel = (TextView) view.findViewById(R.id.userLevel);
+        TextView userFollowingLabel = (TextView) view.findViewById(R.id.followingCount);
+        TextView userLikesLabel = (TextView) view.findViewById(R.id.likesCount);
+        TextView userLevelPointsLabel = (TextView) view.findViewById(R.id.expCount);
+        TextView userCreditsLabel = (TextView) view.findViewById(R.id.userCredits);
+        ImageView verifiedBadge = (ImageView) view.findViewById(R.id.verifiedSymbol);
+        CircleImageView userImageDisplay = (CircleImageView) view.findViewById(R.id.userImage);
+        CircularSeekBar levelProgress = (CircularSeekBar) view.findViewById(R.id.circularSeekBar);
+
+        database = FirebaseDatabase.getInstance("https://shopzadaproject-default-rtdb.asia-southeast1.firebasedatabase.app/");
+
+        userIdLabel.setText(Prevalent.currentOnlineUser.getUsername());
+        userLevelLabel.setText("Level " + Prevalent.currentOnlineUser.getLevel());
+        userLevelPointsLabel.setText("" + Prevalent.currentOnlineUser.getLevelpoints());
+        if (!(Prevalent.currentOnlineUser.getImageUrl().equals("")) &&
+            !(Prevalent.currentOnlineUser.getImageUrl().equals("0")) &&
+            Prevalent.currentOnlineUser.getImageUrl() != null) {
+            Picasso.get().load(Prevalent.currentOnlineUser.getImageUrl()).into(userImageDisplay);
+        }
+        if (Prevalent.currentOnlineUser.isVerified()) {
+            verifiedBadge.setVisibility(View.VISIBLE);
+        }
+        if (Prevalent.currentOnlineUser.getPermission().equalsIgnoreCase("seller") ||
+            Prevalent.currentOnlineUser.getPermission().equalsIgnoreCase("moderator")) {
+            store.setVisibility(View.VISIBLE);
+        }
+        if (Prevalent.currentOnlineUser.getPermission().equalsIgnoreCase("moderator")) {
+            admin.setVisibility(View.VISIBLE);
+        }
+        float levelPoint = Float.valueOf(Prevalent.currentOnlineUser.getLevelpoints());
+        float max = 2000.0f;
+        levelProgress.setProgress(Math.round((levelPoint / max)*100));
+
+        String pattern = "###,###,###.##";
+        DecimalFormat decimalFormat = new DecimalFormat(pattern);
+        userCreditsLabel.setText("" + decimalFormat.format(Prevalent.currentOnlineUser.getCredits()));
+
+        database.getReference("Cart Lists").child("Users").child(Prevalent.currentOnlineUser.getUsername())
+                .child("Products").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            cartNotify.setVisibility(View.VISIBLE);
+                        } else {
+                            cartNotify.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
         luckyWheel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +178,27 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 mainActivity.replaceAndAddToBackStack(new MyAccountFragment(), "My Account");
+            }
+        });
+
+        store.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.replaceAndAddToBackStack(new MyStoreFragment(), "My Store");
+            }
+        });
+
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.replaceAndAddToBackStack(new AdminManagementFragment(), "Admin Management");
+            }
+        });
+
+        orderPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.replaceAndAddToBackStack(new MyOrderFragment(), "My Order");
             }
         });
 

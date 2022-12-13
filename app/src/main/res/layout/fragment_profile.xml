@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,12 +77,12 @@
                 app:cs_circle_style="round"
                 app:cs_disable_pointer="true"
                 app:cs_end_angle="90"
-                app:cs_progress="33"
+                app:cs_progress="0"
                 app:cs_start_angle="90"
-                app:layout_constraintBottom_toBottomOf="@+id/userImage"
-                app:layout_constraintEnd_toEndOf="@+id/userImage"
-                app:layout_constraintStart_toStartOf="@+id/userImage"
-                app:layout_constraintTop_toTopOf="@+id/userImage" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="10dp"
+                tools:ignore="MissingConstraints" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userImage"
@@ -89,9 +90,11 @@
                 android:layout_height="96dp"
                 android:elevation="4dp"
                 android:src="@drawable/ic_userprofile"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/circularSeekBar"
+                app:layout_constraintEnd_toEndOf="@+id/circularSeekBar"
+                app:layout_constraintStart_toStartOf="@+id/circularSeekBar"
+                app:layout_constraintTop_toTopOf="@+id/circularSeekBar"
                 tools:ignore="MissingConstraints" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -163,13 +166,14 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:fontFamily="@font/kanit_bold"
                         android:textColor="@color/black"
-                        android:letterSpacing="0.03"/>
+                        android:letterSpacing="0.03"
+                        tools:ignore="MissingConstraints" />
 
                     <TextView
-                        android:id="@+id/followingLabel"
+                        android:id="@+id/followerLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/following"
+                        android:text="@string/followers"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/followingCount"
@@ -195,7 +199,8 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:fontFamily="@font/kanit_bold"
                         android:textColor="@color/black"
-                        android:letterSpacing="0.03"/>
+                        android:letterSpacing="0.03"
+                        tools:ignore="MissingConstraints" />
 
                     <TextView
                         android:id="@+id/likesLabel"
@@ -224,10 +229,11 @@
                         android:fontFamily="@font/kanit_bold"
                         android:gravity="center"
                         android:letterSpacing="0.03"
-                        android:text="@string/experience"
+                        android:text="@string/zero"
                         android:textColor="@color/black"
                         app:layout_constraintEnd_toStartOf="@+id/expDivide"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="MissingConstraints" />
 
                     <TextView
                         android:id="@+id/expDivide"
@@ -239,7 +245,8 @@
                         android:text="/"
                         android:textColor="@color/black"
                         app:layout_constraintEnd_toStartOf="@id/expTotal"
-                        app:layout_constraintStart_toEndOf="@id/expCount" />
+                        app:layout_constraintStart_toEndOf="@id/expCount"
+                        tools:ignore="MissingConstraints" />
 
                     <TextView
                         android:id="@+id/expTotal"
@@ -253,7 +260,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/expDivide"
-                        tools:layout_editor_absoluteY="0dp" />
+                        tools:layout_editor_absoluteY="0dp"
+                        tools:ignore="MissingConstraints" />
 
                     <TextView
                         android:id="@+id/expLabel"
@@ -272,9 +280,9 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -313,6 +321,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/userCredits"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/kanit_bold"
@@ -439,6 +448,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/orderPage"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:elevation="4dp"
@@ -538,9 +548,111 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/myStorePage"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:elevation="4dp"
+                    android:background="@drawable/sub_button"
+                    android:padding="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:id="@+id/storeIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_store"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/storeNotify"
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:src="@drawable/ic_notify_badge"
+                        app:layout_constraintEnd_toEndOf="@id/storeIcon"
+                        app:layout_constraintTop_toTopOf="@id/storeIcon"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mystore"
+                        android:letterSpacing="0.03"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/storeIcon"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/kanit_medium"
+                        android:textColor="@color/black"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_right_arrow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/adminPage"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:elevation="4dp"
+                    android:background="@drawable/sub_button"
+                    android:padding="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:id="@+id/adminIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_control"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/adminNotify"
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:src="@drawable/ic_notify_badge"
+                        app:layout_constraintEnd_toEndOf="@id/adminIcon"
+                        app:layout_constraintTop_toTopOf="@id/adminIcon"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/adminmanagement"
+                        android:letterSpacing="0.03"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/adminIcon"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/kanit_medium"
+                        android:textColor="@color/black"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_right_arrow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </LinearLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 

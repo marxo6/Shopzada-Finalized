@@ -2,11 +2,26 @@ package com.utcc.shopzada;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+import com.utcc.shopzada.Models.UserDisplayModel;
+import com.utcc.shopzada.Prevalent.Prevalent;
+import com.utcc.shopzada.ViewHolder.UserViewHolder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +38,10 @@ public class ChatFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private MainActivity mainActivity;
+    private FirebaseDatabase database;
+    private DatabaseReference reference;
+    private RecyclerView recyclerView;
 
     public ChatFragment() {
         // Required empty public constructor
@@ -58,7 +77,63 @@ public class ChatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+        View view = inflater.inflate(R.layout.fragment_chat, container, false);
+        mainActivity = (MainActivity) getActivity();
+        recyclerView = (RecyclerView) view.findViewById(R.id.userRecyclerView);
+
+        database = FirebaseDatabase.getInstance("https://shopzadaproject-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        reference = database.getReference("Chat");
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(mainActivity));
+
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        FirebaseRecyclerOptions<UserDisplayModel> options =
+                new FirebaseRecyclerOptions.Builder<UserDisplayModel>()
+                        .setQuery(reference.child(Prevalent.currentOnlineUser.getUsername()), UserDisplayModel.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<UserDisplayModel, UserViewHolder> adapter =
+                new FirebaseRecyclerAdapter<UserDisplayModel, UserViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull UserViewHolder holder, int position, @NonNull UserDisplayModel model) {
+                        holder.userTextLabel.setText(model.getId());
+                        database.getReference("Users").child(model.getId()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()) {
+                                    if (!snapshot.child("imageUrl").getValue().toString().equalsIgnoreCase("")) {
+                                        Picasso.get().load(snapshot.child("imageUrl").getValue().toString()).into(holder.userImageView);
+                                    }
+                                    if (snapshot.child("verified").getValue().equals(true)) {
+                                        holder.verifiedSymbol.setVisibility(View.VISIBLE);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
+
+                    @NonNull
+                    @Override
+                    public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chatview_layout, parent, false);
+                        UserViewHolder userViewHolder = new UserViewHolder(view);
+
+                        return userViewHolder;
+                    }
+                };
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
     }
 }
